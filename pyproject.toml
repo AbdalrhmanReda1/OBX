@@ -1,0 +1,102 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "obx"
+version = "1.0.0"
+description = "Autonomous Runtime Intelligence for Python"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Abdalrhman Reda", email = "contact@obx.dev" }
+]
+maintainers = [
+    { name = "Abdalrhman Reda", email = "contact@obx.dev" }
+]
+keywords = [
+    "runtime-intelligence",
+    "autonomous",
+    "debugging",
+    "performance",
+    "monitoring",
+    "devtools",
+    "profiling",
+    "crash-analysis",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Debuggers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Monitoring",
+    "Typing :: Typed",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "click>=8.0",
+    "rich>=13.0",
+    "psutil>=5.9",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "mypy>=1.0",
+    "ruff>=0.1",
+]
+benchmark = [
+    "pytest-benchmark>=4.0",
+]
+
+[project.scripts]
+obx = "obx.cli.main:cli"
+
+[project.urls]
+Homepage = "https://obx.dev"
+Repository = "https://github.com/AbdalrhmanReda1/obx"
+Documentation = "https://docs.obx.dev"
+"Bug Tracker" = "https://github.com/AbdalrhmanReda1/obx/issues"
+Changelog = "https://github.com/AbdalrhmanReda1/obx/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["obx*"]
+
+[tool.setuptools.package-data]
+obx = ["py.typed"]
+
+[tool.black]
+line-length = 100
+target-version = ["py38", "py39", "py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+select = ["E", "F", "W", "I", "N", "UP", "B", "A", "COM", "C4", "DTZ", "T20", "RET", "SIM"]
+ignore = ["COM812", "RET504"]
+
+[tool.mypy]
+python_version = "3.8"
+strict = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "--tb=short -q"
+
+[tool.coverage.run]
+source = ["obx"]
+omit = ["tests/*", "examples/*", "obx/benchmarks/*"]
