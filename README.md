@@ -228,7 +228,7 @@ Your code never leaves your machine.
 ## Installation
 
 ```bash
-pip install obx
+pip install obx-dev
 ```
 
 Requirements: Python 3.8+
