@@ -1,4 +1,4 @@
-Entername: Publish OBX to PyPI
+name: Publish OBX to PyPI
 
 on:
   push:
